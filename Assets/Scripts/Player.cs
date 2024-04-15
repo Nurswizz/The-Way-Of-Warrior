@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private static float hp = 100f;
-    private static float speed = 5f;
-    private static float attackRange = 0.5f;
-    private Rigidbody2D rb;
+    private float hp = 500f;
+    private float speed = 5f;
+    private float attackRange = 1.5f;
 
+
+    private Rigidbody2D rb;
     private Transform weapon_pos;
     private Animator anim;
+    public Slider health_bar;
+
     public LayerMask layer;
 
     private const string idle = "Player_idle";
@@ -53,8 +57,31 @@ public class Player : MonoBehaviour
         {
             anim.Play(idle);
         }
+       
 
        
+       
     }
+
+    
+    public void takeDamage(float damage)
+    {
+        hp -= damage;
+        health_bar.value = hp;
+    }
+
+    public float getHp()
+    {
+        return hp;
+    }
+
+    public void heal(float HP)
+    {
+        hp += HP;
+        health_bar.value = hp;
+
+    }
+
+
 
 }
